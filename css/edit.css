@@ -58,7 +58,6 @@ a {
 /* Main Container */
 
 #mainContainer {
-    border: 1px solid black;
     padding-top: 80px;
     padding-left: 2.5%;
     height: 100%;
@@ -66,53 +65,15 @@ a {
     display: flex;
 }
 
-/* Filter */
-
-#filter {
-    margin-top: 25px;
-    border: 1px solid black;
-    height: 200px;
-    width: 15%;
-    
-}
-#filter h2 {
-    text-align: center;
-    font-size: 20px;
-}
-
-/* Articles */
-
-#articlesContainer {
-    height: 600px;
-    padding-left: 2.5%;
-    width: 40%;
-    overflow: scroll;
-}
-
-#articlesContainer h2 {
-    text-align: center;
-    padding-bottom: 5px;
-}
-
-#article {
-    border: 1px solid black;
-    height: 100px;
-    width: 100%;
-    margin-bottom: 5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 /* Create Articles */
 
-#createArticle {
+#editArticle {
     border: 1px solid gray;
     margin-left: 2.5%;
     width: 40%;
 }
 
-#createArticle h2{
+#editArticle h2{
     text-align: center;
 }
 
@@ -146,13 +107,11 @@ a {
     margin-top: 10px;
 }
 
- #descriptionInput {
-
-    padding-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
+#content #descriptionInput {
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0.4em;
+    padding-right: 0.4em;
     height: 200px;
     width: 98%;
-    overflow: hidden;
 }
