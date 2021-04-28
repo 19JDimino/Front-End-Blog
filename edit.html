@@ -23,12 +23,12 @@
                         <form>
                             <p id="title">Title:</p>
                             <textarea id="titleInput" v-model="currentArticle.title"></textarea>
-                            <p id="category">{{currentArticle.title}}Category:</p>
+                            <p id="category">Category:</p>
                             <input id="categoryInput" v-model="currentArticle.category_id">
                             <p id="description">Description:</p>
                             <textarea id="descriptionInput" v-model="currentArticle.body"></textarea>
                             <BR>
-                            <input @click="editArticle">
+                            <a @click="editArticle">Update</a>
                         </form>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ let app = new Vue({
         currentArticle: "",
         result: [],
         responseAvailable: false,
-        apiKey: JSON.stringify('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJleHAiOjE2MjAwNTY0OTJ9.rqP6jqxEnt952uLUfgQknc5H0X8mQnxK4Gdy8fbyKbM'),
+        apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJleHAiOjE2MjAwNTY0OTJ9.rqP6jqxEnt952uLUfgQknc5H0X8mQnxK4Gdy8fbyKbM',
     },
     methods: {
         updateTitle() {
@@ -54,19 +54,32 @@ let app = new Vue({
         },
 
         async editArticle() {
-            console.log("Here");
-            let _headers = new Headers();
-            _headers.append("Content-Type", "application/json");
-            _headers.append("Authorization", "Bearer " + this.apiKey);
-            const data = { "title": "SD" }
+            let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
+            const data = { "title": this.currentArticle.title, 
+                           "category_id": this.currentArticle.category_id,
+                           "body": this.currentArticle.body }
+
             await fetch("http://206.189.202.188:2513/api/articles/edit/" + this.currentArticle.id, { 
                 method: "POST",
-                //mode: 'cors',
                 headers: _headers,
                 body: JSON.stringify(data)
             })
             .then(res => res.json())
             .then(data => this.result = data)
+            window.location.href = "index.html"
+        },
+
+        async deleteArticle() {
+            console.log("Here");
+            let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
+            await fetch("http://206.189.202.188:2513/api/articles/delete/" + this.currentArticle.id, { 
+                method: "DELETE",
+                headers: _headers,
+            })
+            .then(res => res.json())
+            .then(data => this.result = data)
+            window.location.href = "index.html"
+
         },
 
         viewArticle(temp) {

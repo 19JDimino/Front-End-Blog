@@ -24,9 +24,11 @@
                     <h2>Articles</h2>
                     <ul id="articles" v-for="x in result.articles">
                         <p id="article">
-                            Title:<a href="view.html" @click="viewArticle(x)">{{x.title}}</a>
+                            Title: {{x.title}}</a>
                             <br>
                             Description: {{x.body}}
+                            <br>
+                            <button><a href="view.html" @click="viewArticle(x)">View</a></button>
                         </p>
                     </ul>
                 </div>
