@@ -36,12 +36,12 @@
                     <h2>Create an Article</h2>
                     <div id="content">
                         <p id="title">Title:</p>
-                        <textarea id="titleInput"></textarea>
+                        <textarea id="titleInput" v-model="tempTitle"></textarea>
                         <p id="category">Category:</p>
-                        <textarea id="categoryInput"></textarea>
+                        <textarea id="categoryInput" v-model="tempCategory"></textarea>
                         <p id="description">Description:</p>
-                        <textarea id="descriptionInput"></textarea>
-                        <button id="createButton">Post</button>
+                        <textarea id="descriptionInput" v-model="tempBody"></textarea>
+                        <a id="fakeButton" @click="postArticle">Post</a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ let app = new Vue({
     el: "#vueApp",
     data: {
         tempTitle: "",
-        tempCategory: 0,
+        tempCategory: "",
         tempBody: "",
         signedIn: true,
         currUser: "James",
@@ -69,8 +69,28 @@ let app = new Vue({
             window.location.href = "index.html"
         },
 
+        async postArticle() {
+            if (this.apiKey == "") {
+                console.log("Please Log In");
+                return;
+            } else {
+                let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
+                const data = { "title": this.tempTitle, 
+                               "category_id": this.tempCategory,
+                               "body": this.tempBody }
+
+                await fetch("http://206.189.202.188:2513/api/articles/add", { 
+                    method: "POST",
+                    headers: _headers,
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => this.result = data)
+                window.location.href = "index.html"
+            }
+        },
+
         async deleteArticle() {
-            console.log("Here");
             let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
             await fetch("http://206.189.202.188:2513/api/articles/delete/" + this.currentArticle.id, { 
                 method: "DELETE",
