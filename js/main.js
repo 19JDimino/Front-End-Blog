@@ -4,49 +4,57 @@ let app = new Vue({
         tempTitle: "",
         tempCategory: "",
         tempBody: "",
-        signedIn: true,
-        currUser: "James",
+        signedIn: false,
+        currUser: "",
+        password: "",
         currentArticle: "",
         result: [],
         responseAvailable: false,
-        apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJleHAiOjE2MjAwNTY0OTJ9.rqP6jqxEnt952uLUfgQknc5H0X8mQnxK4Gdy8fbyKbM',
+        apiKey: "",
+        resp: "",
     },
     methods: {
-        updateTitle() {
-            this.tempTitle = this.currentArticle.title
-            this.tempCategory = this.currentArticle.category_id;
-            this.tempBody = this.currentArticle.body;     
+        async login() {
+            let _headers = { "Content-Type": "application/json" }
+            const data = { "username": this.currUser, 
+                           "password": this.password }
+            this.password = "";
+
+            await fetch("http://206.189.202.188:2513/api/users/token", { 
+                method: "POST",
+                headers: _headers,
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                if (res.status != 200) {
+                    alert("Incorrect Username or Password");
+                    return;
+                } else {
+                    return res.json();
+                }
+            })
+            .then(data => this.result = data)
+
+            this.apiKey = this.result.data.token;
+            this.signedIn = true;
+            console.log("password = ");
+            window.location.href = "index.html"
         },
-        /*
-        async getArticles() {
-            // Default options are marked with *
-            const response = await fetch("http://206.189.202.188:2513/api/articles", {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                //mode: 'cors', // no-cors, *cors, same-origin
-                //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                //credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authenication': this.apiKey
-                },
-                
-            });
-            return response.json(); // parses JSON response into native JavaScript objects
-        },*/
-          
-        // async getArticles() {
-        //     fetch("http://206.189.202.188:2513/api/articles",
-        //         {
-        //             "method": "GET",
-        //         })
-        //     .then(response=> {
-        //         console.log(response.body);
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => this.result = data)
-        //     .catch(err=> {
-        //         console.log(err);
-        //     })
+
+        logout() {
+            console.log("Logout");
+            this.signedIn = false;
+            this.apiKey = "";
+            this.currUser = "";
+            localStorage.clear();
+        },
+
+        // updateTitle() {
+        //     this.tempTitle = this.currentArticle.title
+        //     this.tempCategory = this.currentArticle.category_id;
+        //     this.tempBody = this.currentArticle.body;     
+        // },
+       
         async getArticles() {
             await fetch("http://206.189.202.188:2513/api/articles")
             .then(res => res.json())
@@ -109,20 +117,47 @@ let app = new Vue({
     },
     beforeMount() {
         this.getArticles();
-            // .then(result => {
-            //     console.log(result);
-            // });
     },
     watch: {
         currentArticle: {
             handler(item) {
                 localStorage.currentArticle = JSON.stringify(item);
             }
+        },
+
+        currUser: {
+            handler(item) {
+                localStorage.currUser = JSON.stringify(item);
+            }
+        },
+
+        apiKey: {
+            handler(item) {
+                localStorage.apiKey = JSON.stringify(item);
+            }
+        },
+
+        signedIn: {
+            handler(item) {
+                localStorage.signedIn = JSON.stringify(item);
+            }
         }
     },
     mounted() {
         if (localStorage.currentArticle) {
             this.currentArticle = JSON.parse(localStorage.currentArticle);
+        }
+
+        if (localStorage.currUser) {
+            this.currUser = JSON.parse(localStorage.currUser);
+        }
+
+        if (localStorage.apiKey) {
+            this.apiKey = JSON.parse(localStorage.apiKey);
+        }
+
+        if (localStorage.signedIn) {
+            this.signedIn = JSON.parse(localStorage.signedIn);
         }
     }
 });
