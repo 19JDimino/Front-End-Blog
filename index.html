@@ -9,8 +9,39 @@
     </head>
     <body>
         <div id="vueApp">
-            <h1 class="welcome">{{welcomeMessage}}</h1>
-            <input class="welcome" v-model="welcomeMessage" />
+            <nav id="navbar">
+                <h1 class="logo"><a href="index.html"><img src="../img/logo.png" alt="logo"></a></h1>
+                <ul>
+                    <li><a href="login.html" v-if="signedIn == false">Login</a></li>
+                    <li><a @click="logout" v-if="signedIn == true">Welcome, {{currUser}}</a></li>
+                </ul>
+            </nav>
+            <div id="mainContainer">
+                <div id="articlesContainer">
+                    <h2>Articles</h2>
+                    <ul id="articles" v-for="x in result.articles">
+                        <p id="article">
+                            Title: {{x.title}}</a>
+                            <br>
+                            Description: {{x.body}}
+                            <br>
+                            <button><a href="view.html" @click="viewArticle(x)">View</a></button>
+                        </p>
+                    </ul>
+                </div>
+                <div id="createArticle">
+                    <h2>Create an Article</h2>
+                    <div id="content">
+                        <p id="title">Title:</p>
+                        <textarea id="titleInput" v-model="tempTitle"></textarea>
+                        <p id="category">Category:</p>
+                        <textarea id="categoryInput" v-model="tempCategory"></textarea>
+                        <p id="description">Description:</p>
+                        <textarea id="descriptionInput" v-model="tempBody"></textarea>
+                        <a id="fakeButton" @click="postArticle">Post</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
