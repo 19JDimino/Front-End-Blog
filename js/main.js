@@ -86,6 +86,10 @@ let app = new Vue({
         },
 
         async postArticle() {
+            if (this.tempTitle == "" || this.tempBody == ""){
+                alert("Please fill in all inputs");
+                return;
+            }
             if (this.apiKey == "") {
                 alert("You must be signed in to post an article");
                 return;

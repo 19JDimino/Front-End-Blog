@@ -65,21 +65,40 @@ a {
     display: flex;
 }
 
-/* Full Page Article View */
+/* Full Page Article View  <button><a href="edit.html">Edit</a></button>
+                <button @click="deleteArticle">Delete</button>*/
 
 #fullArticle {
     height: 100%;
     width: 75%;
-    margin-left: 12.5%;
+    margin-left: 3%;
 }
 
 #title {
-    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
     font-size: 28px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #body {
-    text-align: center;
+    text-indent: 30px;
     font-size: 22px;
+}
+
+#editButton {
+    font-size: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    height: 30px;
+    border-radius: 10;
+}
+
+#deleteButton {
+    margin-left: 5px;
+    font-size: 16px;
+    padding-left: 7px;
+    padding-right: 7px;
+    height: 30px;
 }

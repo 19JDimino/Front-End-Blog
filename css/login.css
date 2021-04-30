@@ -1,0 +1,29 @@
+* {
+    background-color: beige;
+}
+
+p {
+    margin-left: 46%;
+    margin-top: 18%;
+    font-size: 20px;    
+}
+
+input {
+    margin-left: 42.5%;
+    background-color: white;
+    width: 15%;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+#fakeButton {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 48%;
+}
+

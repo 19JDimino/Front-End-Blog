@@ -16,7 +16,7 @@
                     <li><a @click="logout" v-if="signedIn == true">Welcome, {{currUser}}</a></li>
                 </ul>
             </nav>
-            <div id="mainContainer">
+            <div id="mainContainer"> 
                 <div id="articlesContainer">
                     <h2>Articles</h2>
                     <ul id="articles" v-for="x in result.articles">
@@ -25,7 +25,8 @@
                             <br>
                             Description: {{x.body}}
                             <br>
-                            <button><a href="view.html" @click="viewArticle(x)">View</a></button>
+                            <br>
+                            <button id="viewButton"><a href="view.html" @click="viewArticle(x)">View</a></button>
                         </p>
                     </ul>
                 </div>
@@ -38,7 +39,8 @@
                         <textarea id="categoryInput" v-model="tempCategory"></textarea>
                         <p id="description">Description:</p>
                         <textarea id="descriptionInput" v-model="tempBody"></textarea>
-                        <a id="fakeButton" @click="postArticle">Post</a>
+                        <br>
+                        <span id="fakeButton"><a @click="postArticle">Post</a></span>
                     </div>
                 </div>
             </div>
