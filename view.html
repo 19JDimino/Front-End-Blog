@@ -17,10 +17,10 @@
                 </ul>
             </nav>
             <div id="mainContainer">
-                <button><a href="edit.html">Edit</a></button>
-                <button @click="deleteArticle">Delete</button>
-                <di id="fullArticle">
-                    <p id="title">Title: {{currentArticle.title}}</p>
+                <button id="editButton"><a href="edit.html">Edit</a></button>
+                <button id="deleteButton" @click="deleteArticle">Delete</button>
+                <div id="fullArticle">
+                    <p id="title">{{currentArticle.title}}</p>
                     <p id="body">{{currentArticle.body}}</p>
                 </div>
             </div>   

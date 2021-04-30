@@ -58,6 +58,7 @@ a {
 /* Main Container */
 
 #mainContainer {
+    margin-left: 26%;
     padding-top: 80px;
     padding-left: 2.5%;
     height: 100%;
@@ -68,7 +69,6 @@ a {
 /* Create Articles */
 
 #editArticle {
-    border: 1px solid gray;
     margin-left: 2.5%;
     width: 40%;
 }
@@ -82,7 +82,6 @@ a {
     margin-top: 5px;
     height: 600px;
     width: 100%;
-    border: 1px solid black;
 }
 
 #content #title {
@@ -91,7 +90,7 @@ a {
 
 #content #titleInput {
     height: 25px;
-    width: 300px;
+    width: 60%;
 }
 
 #content #category {
@@ -100,7 +99,7 @@ a {
 
 #content #categoryInput {
     height: 25px;
-    width: 300px;
+    width: 60%;
 }
 
 #content #description {
@@ -114,4 +113,16 @@ a {
     padding-right: 0.4em;
     height: 200px;
     width: 98%;
+    margin-bottom: 15px;
+}
+
+#fakeButton {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 46%;
 }

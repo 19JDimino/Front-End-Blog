@@ -4,11 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="css/view.css">
+        <link rel="stylesheet" href="css/login.css">
         <title>My VueJS app</title>
     </head>
     <body>
         <div id="vueApp">
+            <span>Test Username: James</span>
+            <br>
+            <span>Test Username: password</span>
             <p>Please Sign In</p>
             <input placeholder="Username" v-model="currUser" required>
             <br>
@@ -16,6 +19,7 @@
             <br>
             <a id="fakeButton" @click="login">Login</a>
         </div>
+        
 
 
         <script src="js/vue.min.js"></script>
