@@ -37,12 +37,10 @@ let app = new Vue({
 
             this.apiKey = this.result.data.token;
             this.signedIn = true;
-            console.log("password = ");
-            window.location.href = "index.html"
+            window.location.href = "index.html";
         },
 
         logout() {
-            console.log("Logout");
             this.signedIn = false;
             this.apiKey = "";
             this.currUser = "";
@@ -62,6 +60,7 @@ let app = new Vue({
         },
 
         async editArticle() {
+            let x = 0;
             let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
             const data = { "title": this.currentArticle.title, 
                            "category_id": this.currentArticle.category_id,
@@ -72,14 +71,23 @@ let app = new Vue({
                 headers: _headers,
                 body: JSON.stringify(data)
             })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status != 200) {
+                    alert("You must be signed in to post an article");
+                    x = -1;
+                    return;
+                } else {
+                    return res.json();
+                }
+            })
             .then(data => this.result = data)
-            window.location.href = "index.html"
+            if (x != -1)
+                window.location.href = "index.html";
         },
 
         async postArticle() {
             if (this.apiKey == "") {
-                console.log("Please Log In");
+                alert("You must be signed in to post an article");
                 return;
             } else {
                 let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
@@ -92,22 +100,37 @@ let app = new Vue({
                     headers: _headers,
                     body: JSON.stringify(data)
                 })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status != 200) {
+                        alert("You must be signed in to post an article");
+                        return;
+                    } else {
+                        return res.json();
+                    }
+                })
                 .then(data => this.result = data)
-                window.location.href = "index.html"
+                window.location.href = "index.html";
             }
         },
 
         async deleteArticle() {
+            let x = 0;
             let _headers = { "Content-Type": "application/json", "Authorization": "Bearer " + this.apiKey }
             await fetch("http://206.189.202.188:2513/api/articles/delete/" + this.currentArticle.id, { 
                 method: "DELETE",
                 headers: _headers,
             })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status != 200) {
+                    alert("You must be signed in to delete an article");
+                    x = -1;
+                } else {
+                    return res.json();
+                }
+            })
             .then(data => this.result = data)
-            window.location.href = "index.html"
-
+            if (x != -1)
+                window.location.href = "index.html";
         },
 
         viewArticle(temp) {
